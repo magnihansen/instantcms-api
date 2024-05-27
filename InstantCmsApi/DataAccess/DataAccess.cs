@@ -6,14 +6,11 @@ namespace InstantCmsApi.DataAccess;
 
 public class DataAccess : IDataAccess
 {
-    private readonly string _connectionString;
-    // private readonly IWebHostEnvironment _webHostEnvironment;
-    private readonly IConfiguration _config;
+    private readonly string? _connectionString;
 
     public DataAccess(IConfiguration config)
     {
-        _config = config;
-        _connectionString = config.GetConnectionString("ConnectionStrings:Default").ToString();
+        _connectionString = config.GetConnectionString("ConnectionStrings:Default")?.ToString();
     }
 
     public async Task<T> LoadSingleData<T, U>(string sql, U parameters)
@@ -27,7 +24,7 @@ public class DataAccess : IDataAccess
         {
             connection.Open();
             T data = await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
-            return data != null ? data : default(T);
+            return data != null ? data : default;
         }
     }
 

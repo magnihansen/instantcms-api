@@ -9,7 +9,11 @@ public class UserIdentity : IUserIdentity
         Username = username;
         AuthenticationType = authenticationType;
         IsAuthenticated = isAuthenticated;
+        FullName = "";
+        FirstName = "";
+        LastName = "";
     }
+
     public UserIdentity(int userId, string username, string fullName, string firstName, string lastName, string authenticationType, bool isAuthenticated)
     {
         UserId = userId;

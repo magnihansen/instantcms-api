@@ -47,16 +47,16 @@ namespace InstantCmsApi.Service
             DomainModels.Page insertedPage = await _pageRepository.InsertPageAsync(
                 host: host,
                 domainId: domain.Id,
-                uid: page.Uid,
+                uid: page.Uid ?? "",
                 parentId: page.ParentId,
                 pageTypeId: page.PageTypeId,
-                title: page.Title,
-                content: page.Content,
+                title: page.Title ?? "",
+                content: page.Content ?? "",
                 sort: page.Sort,
-                link: page.Link,
+                link: page.Link ?? "",
                 isRouterLink: page.IsRouterLink,
                 active: page.Active,
-                createdBy: page.CreatedBy
+                createdBy: page.CreatedBy ?? ""
             );
             return insertedPage.MapPageToPageVM();
         }

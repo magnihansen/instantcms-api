@@ -18,15 +18,15 @@ public class UserContextFactory : IUserContext
 
     public IUserIdentity User => GetUserContext().User;
 
-    public string JwtToken => GetUserContext().JwtToken;
+    public string JwtToken => GetUserContext()?.JwtToken;
 
-    public DateTimeOffset? JwtTokenExpires => GetUserContext().JwtTokenExpires;
+    public DateTimeOffset? JwtTokenExpires => GetUserContext()?.JwtTokenExpires;
 
-    public IIdentity Identity => GetUserContext().Identity;
+    public IIdentity? Identity => GetUserContext()?.Identity;
 
     public bool IsInRole(string role)
     {
-        return GetUserContext().IsInRole(role);
+        return GetUserContext()?.IsInRole(role) ?? false;
     }
 
     private const string UserContextStoreKey = "IUserContext";
@@ -37,7 +37,7 @@ public class UserContextFactory : IUserContext
 
         if (httpContext != null && httpContext.Items.ContainsKey(UserContextStoreKey) && httpContext.Items[UserContextStoreKey] is IUserContext)
         {
-            return (IUserContext)httpContext.Items[UserContextStoreKey];
+            return (IUserContext)httpContext.Items[UserContextStoreKey] ?? (IUserContext)new Dictionary<object, object>();
         }
 
         IUserContext userContext = null;

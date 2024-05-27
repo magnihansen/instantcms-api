@@ -267,9 +267,9 @@ public static class Helper
             key: setting.Key,
             value: setting.Value,
             createdDate: setting.CreatedDate,
-            createdBy: setting.CreatedBy,
+            createdBy: setting.CreatedBy ?? "",
             updatedDate: setting.UpdatedDate,
-            updatedBy: setting.UpdatedBy
+            updatedBy: setting.UpdatedBy ?? ""
         );
     }
 
@@ -280,7 +280,7 @@ public static class Helper
             settingTypeId: settingKey.SettingTypeId,
             key: settingKey.Key,
             isDefault: settingKey.IsDefault,
-            defaultValue: settingKey.DefaultValue
+            defaultValue: settingKey.DefaultValue ?? ""
         );
     }
 

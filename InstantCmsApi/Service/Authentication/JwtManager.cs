@@ -42,8 +42,8 @@ public class JwtManager : IJwtManager
 
     public async Task<ViewModels.UserVM> GetUserByIdentity(ClaimsIdentity identity)
     {
-        string userData = identity.Claims.Where(p => p.Type == "userData").FirstOrDefault()?.Value;
-        ViewModels.UserVM user = JsonConvert.DeserializeObject<ViewModels.UserVM>(userData);
+        string? userData = identity.Claims.FirstOrDefault(p => p.Type == "userData")?.Value;
+        ViewModels.UserVM user = JsonConvert.DeserializeObject<ViewModels.UserVM>(userData) ?? new ViewModels.UserVM();
         return await Task.Run(() => user);
     }
 

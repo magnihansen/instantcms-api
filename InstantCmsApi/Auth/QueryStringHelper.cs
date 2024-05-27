@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Text;
 
 namespace InstantCmsApi.Auth;
@@ -9,10 +7,6 @@ public class QueryStringHelper
 {
     private readonly List<KeyValuePair<string, string>> _parameters = new List<KeyValuePair<string, string>>();
     private readonly string _path;
-
-    public QueryStringHelper()
-    {
-    }
 
     public QueryStringHelper(string path)
     {

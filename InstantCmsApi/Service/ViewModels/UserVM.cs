@@ -1,8 +1,9 @@
-﻿using System;
-namespace InstantCmsApi.Service.ViewModels;
+﻿namespace InstantCmsApi.Service.ViewModels;
 
 public class UserVM
 {
+    public UserVM() { }
+
     public UserVM(int id, int domainId, string username, string firstname, string lastname, string address,
         string zip, string city, string country, string email, string phone, bool active,
         DateTime createdDate, string createdBy, DateTime updatedDate, string updatedBy,

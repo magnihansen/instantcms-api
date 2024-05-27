@@ -8,5 +8,5 @@ public class AdministrativeSystemClaims
     /// <summary>
     /// A claim representing the Unik Bolig access token.
     /// </summary>
-    public string UnikAccessToken { get; set; }
+    public string? UnikAccessToken { get; set; }
 }

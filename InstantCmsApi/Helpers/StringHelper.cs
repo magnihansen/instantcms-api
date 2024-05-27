@@ -1,19 +1,18 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using Microsoft.AspNetCore.Http;
 
 namespace InstantCmsApi.Helpers;
 
 public static class StringHelper
 {
-    public static string GetAddressHost(this Microsoft.AspNetCore.Http.HttpRequest httpRequest)
+    public static string GetAddressHost(this HttpRequest httpRequest)
     {
-        Uri address = httpRequest.GetTypedHeaders().Referer;
-        if (address?.Host == "localhost")
+        Uri? address = httpRequest.GetTypedHeaders().Referer;
+        if (address == null || address?.Host == "localhost")
         {
             return "craftsfo.instantcms.dk";
         }
-        return address?.Host;
+        return address.Host;
     }
 
     public static string ConvertToMySqlDateTime(this DateTime dateTime)
@@ -33,11 +32,11 @@ public static class StringHelper
         return Encoding.UTF8.GetString(base64EncodedBytes);
     }
 
-    public static object GetPropValue(this object src, string propName)
+    public static object? GetPropValue(this object src, string propName)
     {
         try
         {
-            return src.GetType().GetProperty(propName).GetValue(src, null);
+            return src.GetType().GetProperty(propName)?.GetValue(src, null);
         }
         catch
         {
