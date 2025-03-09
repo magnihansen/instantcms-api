@@ -16,22 +16,23 @@ public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticat
     private readonly UserClaimsHandler _claimsHandler;
     private readonly IJwtManager _jwtManager;
 
-    public BasicAuthenticationHandler(
-        IOptionsMonitor<BasicAuthenticationOptions> options,
-        ILoggerFactory logger,
-        UrlEncoder encoder,
-        UserClaimsHandler claimsHandler,
-        IJwtManager jwtManager) : base(options, logger, encoder)
-    {
-        _claimsHandler = claimsHandler;
-        _jwtManager = jwtManager;
-    }
+  public BasicAuthenticationHandler(
+          IOptionsMonitor<BasicAuthenticationOptions> options,
+          ILoggerFactory logger,
+          UrlEncoder encoder,
+          ISystemClock clock,
+          UserClaimsHandler claimsHandler,
+          IJwtManager jwtManager) : base(options, logger, encoder, clock)
+  {
+    _claimsHandler = claimsHandler;
+    _jwtManager = jwtManager;
+  }
 
-    /// <summary>
-    /// Searches the 'Authorization' header for a 'AuthToken' token. If the 'AuthToken' token is found, it is validated using the JWT from AuthA8.
-    /// </summary>
-    /// <returns></returns>
-    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+  /// <summary>
+  /// Searches the 'Authorization' header for a 'AuthToken' token. If the 'AuthToken' token is found, it is validated using the JWT from AuthA8.
+  /// </summary>
+  /// <returns></returns>
+  protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
         try
         {
